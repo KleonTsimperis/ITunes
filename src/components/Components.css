@@ -1,0 +1,83 @@
+.shadowCard{
+  -webkit-box-shadow: 10px 10px 6px -6px #777;
+   -moz-box-shadow: 10px 10px 6px -6px #777;
+        box-shadow: 10px 10px 6px -6px #777;
+
+}
+
+.searchBar{
+   display: block;
+   margin: 10px auto;
+   width: 100%;
+   padding: 7px 10px;
+   border: 1px solid #B54BEB;
+   border-radius: 5px;
+   outline: 0;
+}
+
+.searchButton{
+  display: block;
+  margin: 10px auto;
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #5B86EE;
+  background: #5B86EE;
+  border-radius: 5px;
+  outline: 0;
+  font-family: 'Bevan', cursive;
+  cursor:pointer;
+}
+
+.searchBar:focus{
+  border: 2px solid #B54BEB;
+  outline: 0;
+}
+
+.searchButton:focus{
+  border: 1px solid #00EEEB;
+  outline: 0;
+}
+
+.iTunesColor{
+   background: linear-gradient(100deg, #FF694C 0%, #F15378 30%, #E053D5 40%, #B54BEB 60%, #5B86EE 70%, #00EEEB 100%);
+   font-family: 'Bevan', cursive;
+   color:white;
+}
+
+.inputWithIcon input[type=text]{
+  padding-left: 40px;
+}
+
+.inputWithIcon{
+  position:relative;
+}
+
+.inputWithIcon i{
+  position:absolute;
+  left:10px;
+  top:13px;
+  padding: 9px 8px;
+  color:#B54BEB;
+}
+
+.inputWithIcon input[type=text]:focus + i{
+  color:#B54BEB;
+}
+
+.cardTextOverflow{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.toggleLayout{
+  position:fixed;
+  bottom:10px;
+  right:10px;
+}
+
+.additionalPages{
+  position:fixed;
+  bottom:60px;
+  right:10px;
+}

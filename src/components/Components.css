@@ -5,42 +5,59 @@
 
 }
 
+.searchButton{
+  border-radius: 5px;
+  height:40px;
+  border: 1px solid #0F2027;
+  color:white;
+  background-color: #2C5364;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.searchButton:focus{
+  border-radius: 5px;
+  height:40px;
+  border: 2px solid #2C5364;
+  outline: 0;
+  color:white;
+  transition-duration: 0.4s;
+}
+
 .searchBar{
    display: block;
    margin: 10px auto;
-   width: 100%;
+   width: 300px;
    padding: 7px 10px;
-   border: 1px solid #B54BEB;
+   border: 1px solid #0F2027;
    border-radius: 5px;
    outline: 0;
 }
 
-.searchButton{
-  display: block;
-  margin: 10px auto;
-  width: 100%;
-  padding: 7px 10px;
-  border: 1px solid #5B86EE;
-  background: #5B86EE;
-  border-radius: 5px;
-  outline: 0;
-  font-family: 'Bevan', cursive;
-  cursor:pointer;
-}
-
 .searchBar:focus{
-  border: 2px solid #B54BEB;
+  border: 2px solid #2C5364;
   outline: 0;
 }
 
-.searchButton:focus{
-  border: 1px solid #00EEEB;
-  outline: 0;
+
+
+form{
+  width:400px;
 }
+
+
 
 .iTunesColor{
-   background: linear-gradient(100deg, #FF694C 0%, #F15378 30%, #E053D5 40%, #B54BEB 60%, #5B86EE 70%, #00EEEB 100%);
-   font-family: 'Bevan', cursive;
+
+
+  background: #0F2027;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
+
+font-family: 'Roboto', sans-serif;
    color:white;
 }
 
@@ -81,3 +98,7 @@
   bottom:60px;
   right:10px;
 }
+
+
+
+.list li{border-bottom:1px solid #ccc;display:table;border-collapse:collapse;width:100%}.inner{display:table-row;overflow:hidden}.li-img{display:table-cell;vertical-align:middle;width:30%;padding-right:1em}.li-img img{display:block;width:100%;height:auto}.li-text{display:table-cell;vertical-align:middle;width:70%;padding-right:1em}.li-head{margin:0}.li-summary{display:none;margin:0}.li-action{margin:0}@media screen and (min-width: 40em){.list li{background:none}.li-summary{display:block}}@media screen and (min-width: 60em){.list li{float:left;width:50%}.inner{padding-right:1em}}

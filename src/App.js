@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import Search from './components/Search';
-import GridResults from './components/GridResults';
-import ListResults from './components/ListResults';
+import Results from './components/Results';
 import ToggleLayout from './components/ToggleLayout';
 import AdditionalPages from './components/AdditionalPages';
+import axios from 'axios';
 
 
 const PATH_BASE = 'https://itunes.apple.com/search';
@@ -24,7 +23,9 @@ class App extends Component {
       searchTerm:'',
       itunes:null,
       grid:true,
-      additionalPages:false
+      additionalPages:false,
+      isLoading:false,
+      error:null
     }
   }
 
@@ -40,12 +41,6 @@ class App extends Component {
     })
   }
 
-  albumDismiss = id => {
-    const updatedList =this.state.albums.filter(item=>item.id !== id );
-    this.setState({
-      albums:updatedList
-    })
-  }
 
   fetchMorePages = () =>
     this.setState({
@@ -53,47 +48,47 @@ class App extends Component {
     })
 
 
-  fetchITunesAlbums = (e,searchTerm) =>{
-    e.preventDefault();
-    fetch(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
-      .then(response=> response.json())
-      .then(itunes=>this.setState({itunes}))
-      .catch(e=>e);
-  }
+  fetchITunesAlbums = (e,searchTerm,error) =>{
+     e.preventDefault();
+     axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
+          .then(response => this.setState({itunes:response.data}))
+          .catch(error=>console.log(error))
+   }
 
-  componentDidMount(e){
-    const { searchTerm } = this.state;
+
+
+  componentDidMount(){
+    this.setState({isLoading:true})
   }
 
   render() {
-    const { itunes, grid, additionalPages } = this.state;
+    const { itunes, grid, additionalPages, isLoading, error } = this.state;
+
     return (
-        <div>
-          <Navbar/>
-          <Search
+       <div>
+          <Navbar
             searchTerm={this.state.searchTerm}
             onSearchChange={this.onSearchChange}
             fetchITunesAlbums={this.fetchITunesAlbums}
             switchLayout={this.switchLayout}
-          />
-          {itunes &&
-            <div>
-            {
-              this.state.grid ? <GridResults itunes={itunes} additionalPages={additionalPages} fetchMorePages={this.fetchMorePages} /> : <ListResults itunes={itunes} additionalPages={additionalPages} fetchMorePages={this.fetchMorePages}/>
-            }
-            </div>
-          }
-          {additionalPages &&
-            <AdditionalPages itunes={itunes}/>
+            grid={grid}
+          > ITunes Searcher
+          </Navbar>
+
+
+          { itunes &&
+              <Results itunes={itunes} grid={grid} additionalPages={additionalPages} fetchMorePages={this.fetchMorePages}/>
           }
 
+          { additionalPages &&
+              <AdditionalPages itunes={itunes} grid={grid}/>
+          }
 
           <ToggleLayout
             switchLayout={this.switchLayout}
             grid={grid}
           />
-
-        </div>
+      </div>
     );
   }
 }

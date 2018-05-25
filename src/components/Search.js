@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import './Components.css';
+import PropTypes from 'prop-types';
 
 
 const Search = props =>
-
-
-
-
-        <form>
+    <form>
           <div className="form-row justify-content-center mt-4">
             <div className="col-6 col-md-3 mb-2 mb-md-0 inputWithIcon">
               <input type="text"
@@ -19,12 +16,19 @@ const Search = props =>
               <i className="fas fa-search"></i>
             </div>
             <div className="col-5 col-md-1">
-              <button onClick={(e) => props.fetchITunesAlbums(e,props.searchTerm)} type="submit" className="searchButton  shadowCard text-white">Search</button>
+              <button onClick={(e) => props.fetchITunesAlbums(e,props.searchTerm)} type="submit" className="searchButton shadowCard text-white">Search</button>
             </div>
           </div>
         </form>
 
-
+  Navbar.propTypes = {
+    children: PropTypes.element.isRequired,
+    switchLayout: PropTypes.func.isRequired,
+    grid: PropTypes.bool.isRequired,
+    onSearchChange: PropTypes.func.isRequired,
+    fetchITunesAlbums: PropTypes.func.isRequired,
+    searchTerm: PropTypes.string.isRequired
+  }
 
 
 

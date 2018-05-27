@@ -5,16 +5,18 @@ import Results from './components/Results';
 import ToggleLayout from './components/ToggleLayout';
 import AdditionalPages from './components/AdditionalPages';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
+
 
 
 const PATH_BASE = 'https://itunes.apple.com/search';
 const PATH_TERM = 'term=';
 const COUNTRY = 'country=es';
 const ALBUMS = 'entity=album';
-const LIMIT = 'limit=50';
+const LIMIT = 'limit=60';
 
 // const try = 'https://itunes.apple.com/search?term=yelp&country=us&entity=software';
-
 
 class App extends Component {
   constructor(props){
@@ -23,22 +25,21 @@ class App extends Component {
       searchTerm:'',
       itunes:null,
       grid:true,
-      additionalPages:false,
-
+      additionalPages:false
     }
   }
 
-  switchLayout = () => {
-    this.setState({
-      grid:!this.state.grid
-    })
-  }
+  // switchLayout = () => {
+  //   this.setState({
+  //     grid:!this.state.grid
+  //   })
+  // }
 
-  onSearchChange = event =>{
-    this.setState({
-      searchTerm:event.target.value
-    })
-  }
+  // onSearchChange = event =>{
+  //   this.setState({
+  //     searchTerm:event.target.value
+  //   })
+  // }
 
 
   fetchMorePages = () =>
@@ -54,52 +55,64 @@ class App extends Component {
           .catch(error=>console.log(error))
    }
 
-   clear(){
-     this.setState({
-
-         searchTerm:'',
-         itunes:null,
-         grid:true,
-         additionalPages:false,
-
-
-     })
-   }
-
   render() {
-    const { itunes, grid, additionalPages } = this.state;
-
+    // const { itunes, grid, additionalPages } = this.state;
     return (
+
        <div>
           <Navbar
-            searchTerm={this.state.searchTerm}
-            onSearchChange={this.onSearchChange}
-            fetchITunesAlbums={this.fetchITunesAlbums}
-            switchLayout={this.switchLayout}
-            grid={grid}
+            // searchTerm={this.state.searchTerm}
+            searchTerm={this.props.searchItunes.searchTerm}
+            onSearchChange={(e) => this.props.onSearchChange(e.target.value)}
+            fetchITunesAlbums={() => this.props.fetchITunesAlbums()}
           > ITunes Searcher
           </Navbar>
 
-
-          { itunes &&
-              <Results itunes={itunes} grid={grid} additionalPages={additionalPages} fetchMorePages={this.fetchMorePages}/>
+          { this.props.searchItunes.itunes &&
+              <Results itunes={this.props.searchItunes.itunes} grid={this.props.toggle.grid} additionalPages={this.props.toggle.additionalPages} fetchMorePages={this.fetchMorePages}/>
           }
 
-          { additionalPages &&
-              <AdditionalPages itunes={itunes} grid={grid}/>
+          { this.props.toggle.additionalPages &&
+              <AdditionalPages itunes={this.props.searchItunes.itunes} grid={this.props.toggle.grid}/>
           }
 
           <ToggleLayout
-            switchLayout={this.switchLayout}
-            grid={grid}
+            switchLayout={()=> this.props.switchLayout()}
+            grid={this.props.toggle.grid}
           />
-          <button onClick={()=>this.clear()}>clear</button>
-
       </div>
+
     );
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    toggle: state.booleanReducer,
+    searchItunes: state.searchItunesReducer
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+    switchLayout: () => {
+      dispatch({
+        type:"GRID"
+      });
+    },
+    onSearchChange: (term) => {
+      dispatch({
+        type:"SEARCHTERM",
+        payload:term
+      });
+    },
 
 
-export default App;
+
+
+  };
+};
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

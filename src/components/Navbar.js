@@ -7,7 +7,7 @@ const Navbar = props =>
   <nav className="navbar iTunesColor">
     <a className="navbar-brand mr-5 mt-2 my-auto"> <h2>{props.children}</h2></a>
 
-  
+
 
 
     <form className="form-inline">
@@ -19,13 +19,13 @@ const Navbar = props =>
 
 
   Navbar.propTypes = {
-    switchLayout: PropTypes.func.isRequired,
-    grid: PropTypes.bool.isRequired,
+    switchLayout: PropTypes.func,
+    grid: PropTypes.bool,
     onSearchChange: PropTypes.func.isRequired,
     fetchITunesAlbums: PropTypes.func.isRequired,
     searchTerm: PropTypes.string.isRequired
   }
-
+// switchLayout and grid needs to have isRequired
 
 
 export default Navbar;

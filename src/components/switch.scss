@@ -1,57 +1,24 @@
-.list li {
-  background: url(images/icon_arrow_right.png) no-repeat 97% 50%;
-  border-bottom: 1px solid #ccc;
-  display: table;
-  border-collapse: collapse;
-  width: 100%;
-}
-.inner {
-  display: table-row;
-  overflow: hidden;
-}
-.li-img {
-  display: table-cell;
-  vertical-align: middle;
-  width: 30%;
-  padding-right: 1em;
-}
-.li-img img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-.li-text {
-  display: table-cell;
-  vertical-align: middle;
-  width: 70%;
-  padding-right: 1em;
-}
-.li-head {
-  margin: 0;
-}
-.li-summary {
-  display: none;
-  margin: 0;
-}
-.li-action {
-  margin: 0;
+$color1: #83F556;
+$color2: #51B52A;
+$color3: #248000;
+$glow: 0px 0px 25px;
+
+@keyframes bar{
+50%{height:random(80) + 70px}
 }
 
-@media screen and (min-width: 40em) {
-  .list li {
-    background: none;
-  }
-  .li-summary {
-    display: block;
-  }
-}
+body{background:#050505}
 
-@media screen and (min-width: 60em) {
-  .list li {
-    float: left;
-    width: 50%;
-  }
-  .inner {
-    padding-right: 1em;
-  }
-}
+figure{height:150px;width:95%;max-width:350px;margin:0;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);box-sizing:border-box;border:1px solid $color1;}
+div{width:12.5%;height:100%;display:inline-block;}
+div:after{content:"";position:absolute;bottom:0;width:12.5%;animation: bar 1.5s infinite linear;background:$color1;box-shadow:$glow $color1;height:random(40) + 10px;}
+
+div:nth-child(1):after{animation-delay:-1s;background:$color1;box-shadow:$glow $color1}
+div:nth-child(2):after{animation-delay:-1.2s;background:$color2;box-shadow:$glow $color2}
+div:nth-child(3):after{animation-delay:-2s;background:$color3;box-shadow:$glow $color3}
+div:nth-child(4):after{animation-delay:-2.4s;background:$color1;box-shadow:$glow $color1}
+div:nth-child(5):after{animation-delay:-3s;background:$color2;box-shadow:$glow $color2}
+div:nth-child(6):after{animation-delay:-3.6s;background:$color3;box-shadow:$glow $color3}
+div:nth-child(7):after{animation-delay:-4s;background:$color1;box-shadow:$glow $color1}
+div:nth-child(8):after{animation-delay:-4.8s;background:$color2;box-shadow:$glow $color2}
+div:nth-child(9):after{animation-delay:-5s;background:$color3;box-shadow:$glow $color3}

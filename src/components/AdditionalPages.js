@@ -10,7 +10,7 @@ const AdditionalPages = props =>
 
 <div className="container-fluid">
    <div className={props.grid ? "row" : ""}>
-      {props.itunes.results.filter((item,index) => index > 20).map((item,index) =>
+      {props.itunes.results.filter((item,index) => index > 19 && index <40).map((item,index) =>
         <div className={props.grid ? "col-md-3" : ""}>
           {props.grid ?
             <CardGrid

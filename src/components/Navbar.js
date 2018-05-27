@@ -7,12 +7,7 @@ const Navbar = props =>
   <nav className="navbar iTunesColor">
     <a className="navbar-brand mr-5 mt-2 my-auto"> <h2>{props.children}</h2></a>
 
-    <ul className="navbar-nav ">
-      <li className="nav-item">
-        <a onClick={() => props.switchLayout()} className="mx-auto  text-white"><h3>{props.grid ? 'List' : 'Grid'}</h3></a>
-      </li>
-    </ul>
-
+  
 
 
     <form className="form-inline">

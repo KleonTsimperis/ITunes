@@ -6,6 +6,7 @@ import ToggleLayout from './components/ToggleLayout';
 import AdditionalPages from './components/AdditionalPages';
 import axios from 'axios';
 import { connect } from 'react-redux';
+// import fetchITunesAlbums from './actions/fetchITunesAlbums';
 
 
 
@@ -16,17 +17,19 @@ const COUNTRY = 'country=es';
 const ALBUMS = 'entity=album';
 const LIMIT = 'limit=60';
 
+
+
 // const try = 'https://itunes.apple.com/search?term=yelp&country=us&entity=software';
 
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      searchTerm:'',
-      itunes:null,
-      grid:true,
-      additionalPages:false
-    }
+    // this.state = {
+    //   searchTerm:'',
+    //   itunes:null,
+    //   grid:true,
+    //   additionalPages:false
+    // }
   }
 
   // switchLayout = () => {
@@ -42,29 +45,45 @@ class App extends Component {
   // }
 
 
-  fetchMorePages = () =>
-    this.setState({
-      additionalPages:!this.state.additionalPages
-    })
+  // fetchMorePages = () =>
+  //   this.setState({
+  //     additionalPages:!this.state.additionalPages
+  //   })
 
 
-  fetchITunesAlbums = (e,searchTerm,error) =>{
-     e.preventDefault();
-     axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
-          .then(response => this.setState({itunes:response.data}))
-          .catch(error=>console.log(error))
-   }
+  // fetchITunesAlbums = (e,searchTerm,error) =>{
+  //    e.preventDefault();
+  //    axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
+  //         .then(response => this.setState({itunes:response.data}))
+  //         .catch(error=>console.log(error))
+  //  }
+
+
+  // fetchITunesAlbums = (e,searchTerm) => {
+  //   e.preventDefault();
+  //   return dispatch => {
+  //     axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}${COUNTRY}&${ALBUMS}&${LIMIT}`)
+  //       .then(response =>{
+  //         const itunes = response.data;
+  //         return itunes;
+  //       });
+  //
+  //       // dispatch(list(itunes));
+  //   }
+  // }
 
   render() {
     // const { itunes, grid, additionalPages } = this.state;
+
     return (
 
        <div>
           <Navbar
             // searchTerm={this.state.searchTerm}
+
             searchTerm={this.props.searchItunes.searchTerm}
             onSearchChange={(e) => this.props.onSearchChange(e.target.value)}
-            fetchITunesAlbums={() => this.props.fetchITunesAlbums()}
+            fetchITunesAlbums={(e) => this.props.fetchITunesAlbums(e)}
           > ITunes Searcher
           </Navbar>
 
@@ -101,15 +120,31 @@ const mapDispatchToProps = (dispatch) => {
         type:"GRID"
       });
     },
-    onSearchChange: (term) => {
+
+    fetchMorePages: () => {
       dispatch({
-        type:"SEARCHTERM",
-        payload:term
+        type:"ADDITIONALPAGES"
       });
     },
 
+    onSearchChange: (searchTerm) => {
+      dispatch({
+        type:"SEARCHTERM",
+        payload:searchTerm
+      });
+    },
 
+    fetchITunesAlbums: (e,searchTerm) => {
+      e.preventDefault();
+        axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
+          .then(response =>{
+            dispatch({
+              type: 'FETCHITUNESALBUMS',
+              payload: response.data
+            });
+          });
 
+    }
 
   };
 };

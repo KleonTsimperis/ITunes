@@ -1,16 +1,20 @@
+import {
+  GRID,
+  ADDITIONALPAGES
+} from '../actions/types'
 
 
 
 
 const booleanReducer = (state = { grid:true, additionalPages:false }, action) => {
   switch (action.type){
-    case "GRID":
+    case GRID:
         state = {
           ...state,
           grid:!state.grid
         }
       break;
-    case "ADDITIONALPAGES":
+    case ADDITIONALPAGES:
         state = {
           ...state,
           additionalPages:!state.additionalPages

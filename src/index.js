@@ -51,6 +51,7 @@ const searchItunesReducer = (state = { searchTerm:'', itunes:null }, action) => 
   if (action.type === 'FETCHITUNESALBUMS'){
     return state = {
       ...state,
+      itunes: action.payload
 
       }
     }
@@ -67,13 +68,6 @@ store.subscribe(() =>{
 });
 
 
-store.dispatch((dispatch)=>{
-  dispatch({type:'FETCHITUNESALBUMS'})
-  axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then((response)=>{
-      dispatch({type:'RECEIVE_ALBUMS', payload: response.data})
-    })
-})
 
 
 registerServiceWorker();

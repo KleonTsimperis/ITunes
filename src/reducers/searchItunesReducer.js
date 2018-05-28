@@ -1,19 +1,20 @@
-import { FETCH_LIST } from '../actions/type';
+import { SEARCHTERM,  FETCHITUNESALBUMS} from '../actions/type';
 
 
 
 
 const searchItunesReducer = (state = { searchTerm:'', itunes:null }, action) => {
-  if (action.type === 'FETCH_LIST'){
+  if (action.type === 'SEARCHTERM'){
     return state = {
       ...state,
-      itunes: action.payload
+      searchTerm:action.payload
       }
     }
-
-  if (action.type === "ITUNES"){
+  if (action.type === 'FETCHITUNESALBUMS'){
     return state = {
       ...state,
+      itunes:action.payload
+
       }
     }
       return state;

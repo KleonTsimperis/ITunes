@@ -11,9 +11,9 @@ const Navbar = props =>
 
 
     <form className="form-inline">
-      <input className="form-control searchBar mr-1" size="30" type="search" placeholder="Search ITunes..." aria-label="Search" value={props.value}
+      <input className="form-control searchBar mr-1" size="30" type="search" placeholder="Search ITunes..." aria-label="Search" value={props.searchTerm}
       onChange={props.onSearchChange}/>
-      <button onClick={(e) => props.fetchITunesAlbums(e,props.searchTerm)}  className=" searchButton my-2 my-sm-0" type="submit">Search</button>
+      <button onClick={(e) => props.fetchITunesAlbums(e)}  className=" searchButton my-2 my-sm-0" type="submit">Search</button>
     </form>
   </nav>
 

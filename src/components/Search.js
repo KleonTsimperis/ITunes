@@ -1,35 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Components.css';
 import PropTypes from 'prop-types';
 
 
 const Search = props =>
-    <form>
-          <div className="form-row justify-content-center mt-4">
-            <div className="col-6 col-md-3 mb-2 mb-md-0 inputWithIcon">
-              <input type="text"
-                     className="shadowCard searchBar "
-                     placeholder="Search your album..."
-                     value={props.value}
-                     onChange={props.onSearchChange}
-              />
-              <i className="fas fa-search"></i>
-            </div>
-            <div className="col-5 col-md-1">
-              <button onClick={(e) => props.fetchITunesAlbums(e,props.searchTerm)} type="submit" className="searchButton shadowCard text-white">Search</button>
-            </div>
-          </div>
-        </form>
 
-  Navbar.propTypes = {
-    children: PropTypes.element.isRequired,
-    switchLayout: PropTypes.func.isRequired,
-    grid: PropTypes.bool.isRequired,
+  <form className="form-inline">
+    <input className="searchBar mr-1" size="30" type="search" placeholder="Search in ITunes..." aria-label="Search" value={props.searchTerm}
+    onChange={props.onSearchChange}/>
+    <button onClick={(e) => props.fetchITunesAlbums(e)}  className=" button2 button2width b-blue rot-135 my-2 my-sm-0" type="submit">Search</button>
+  </form>;
+
+  Search.propTypes = {
     onSearchChange: PropTypes.func.isRequired,
     fetchITunesAlbums: PropTypes.func.isRequired,
     searchTerm: PropTypes.string.isRequired
   }
-
 
 
 export default Search;

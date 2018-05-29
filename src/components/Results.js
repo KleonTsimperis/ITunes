@@ -5,11 +5,20 @@ import CardList from './CardList';
 import PropTypes from 'prop-types';
 
 
-const Results = props =>
+const Results = (props,page) =>{
+  console.log(props.currentPage);
 
-<div className="container-fluid">
+  if (props.currentPage===1){
+     page = (item,index) => index < 20;
+  } else if (props.currentPage===2){
+     page = (item,index) => index > 19 && index <40;
+  } else if (props.currentPage===3){
+     page = (item,index) => index > 39 && index <60;
+  }
+
+return <div className="container-fluid">
    <div className={props.grid ? "row" : ""}>
-      {props.itunes.results.filter((item,index) => index < 20).map((item,index) =>
+      {props.itunes.results.filter(page).map((item,index) =>
         <div key={index} className={props.grid ? "col-md-3" : ""}>
           {props.grid ?
             <CardGrid
@@ -19,6 +28,7 @@ const Results = props =>
               artistName={item.artistName}
               collectionViewUrl={item.collectionViewUrl}
               grid={item.grid}
+              trackCount={item.trackCount}
             />
             :
             <CardList
@@ -28,20 +38,19 @@ const Results = props =>
               artistName={item.artistName}
               collectionViewUrl={item.collectionViewUrl}
               grid={item.grid}
+              trackCount={item.trackCount}
             />
           }
         </div>
       )}
-        <button onClick={() => props.fetchMorePages()}>CLICK ME FOR ADDITIONAL PAGES</button>
    </div>
-</div>;
+</div>};
 
 Results.propTypes = {
   grid: PropTypes.bool.isRequired,
   itunes: PropTypes.shape({
     results: PropTypes.array
-  }),
-  fetchMorePages: PropTypes.func.isRequired
+  })
 }
 
 

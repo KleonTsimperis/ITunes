@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Components.css';
 import PropTypes from 'prop-types';
+import Search from './Search';
 
 const Navbar = props =>
 
-  <nav className="navbar iTunesColor">
-    <a className="navbar-brand mr-5 mt-2 my-auto"> <h2>{props.children}</h2></a>
 
+  <nav className="navbar iTunesColor" >
+    <a className="navbar-brand mr-5 mt-2 my-auto">
+     <h2 className="neon title" onClick={() => props.clearLayout()}>
+      {props.children}
+     </h2>
+    </a>
 
+    <Search
+      searchTerm={props.searchTerm}
+      onSearchChange={props.onSearchChange}
+      fetchITunesAlbums={(e) => props.fetchITunesAlbums(e)}
+     />
 
-
-    <form className="form-inline">
-      <input className="form-control searchBar mr-1" size="30" type="search" placeholder="Search ITunes..." aria-label="Search" value={props.searchTerm}
-      onChange={props.onSearchChange}/>
-      <button onClick={(e) => props.fetchITunesAlbums(e)}  className=" searchButton my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </nav>
-
+  </nav>;
 
   Navbar.propTypes = {
-    switchLayout: PropTypes.func,
-    grid: PropTypes.bool,
+    clearLayout: PropTypes.func,
     onSearchChange: PropTypes.func.isRequired,
     fetchITunesAlbums: PropTypes.func.isRequired,
     searchTerm: PropTypes.string.isRequired
   }
-// switchLayout and grid needs to have isRequired
-
 
 export default Navbar;

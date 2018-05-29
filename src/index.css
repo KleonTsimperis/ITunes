@@ -1,5 +1,16 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+} */
+
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body{
+  background: url('../src/images/whitewall3.jpg') center center;
+  background-size: cover;
+
 }

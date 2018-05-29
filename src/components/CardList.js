@@ -7,14 +7,14 @@ const CardList = props =>
 
 <div id="pattern" className="pattern my-4 d-flex align-items-start flex-column">
   <ul className="list img-list">
-    <li>
-        <div className="li-img">
-          <img className="card-img-top" src={props.artworkUrl100.replace('100x100', '1200x1200')}/>
+    <li >
+        <div className="li-img listCardContainer">
+          <img className="card-img-top shadowCardList img-fluid" style={{borderRadius:"20%"}} src={props.artworkUrl100.replace('100x100', '800x800')} alt={props.collectionName} title={props.collectionName}/>
         </div>
         <div className="li-text">
-          <h4 className="li-head">{props.collectionName}</h4>
-          <p className="li-summary">{props.artistName}</p>
-          <p className="li-action"><button id="listButton" className="searchButton w-25"><a href={props.collectionViewUrl} className="text-white" target="_blank">More info</a></button></p>
+          <h1 className="li-head m-3" title={`${props.trackCount} songs`}>{props.collectionName}</h1>
+          <p className="li-summary m-3 h2" title={`Genre: ${props.primaryGenreName}`}>{props.artistName}</p>
+          <p className="li-action "><button id="listButton" className="shadowCardList w-25 m-3 b-blue moreInfoButton"><a href={props.collectionViewUrl} className="text-white" target="_blank">More info</a></button></p>
         </div>
     </li>
   </ul>

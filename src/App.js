@@ -55,6 +55,7 @@ class App extends Component {
 
           { this.props.searchItunes.display &&
           <Pages
+            numberOfAlbums={this.props.searchItunes.itunes.results.length}
             page1={()=> this.props.page1()}
             page2={()=> this.props.page2()}
             page3={()=> this.props.page3()}

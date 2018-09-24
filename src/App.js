@@ -6,21 +6,19 @@ import ToggleLayout from './components/ToggleLayout';
 import axios from 'axios';
 import Pages from './components/Pages';
 import Slide from 'react-reveal';
-
-import './App.css';
-
+import {switchLayout} from './actions/actions';
+import {onSearchChange} from './actions/actions';
+import {page} from './actions/actions';
+import {clearLayout} from './actions/actions';
+import {fetchITunesAlbums} from './actions/actions';
 
 const PATH_BASE = 'https://itunes.apple.com/search';
 const PATH_TERM = 'term=';
 const COUNTRY = 'country=es';
 const ALBUMS = 'entity=album';
 const LIMIT = 'limit=60';
-// const try = 'https://itunes.apple.com/search?term=yelp&country=us&entity=software';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-  }
 
   render() {
     return (
@@ -56,9 +54,9 @@ class App extends Component {
           { this.props.searchItunes.display &&
           <Pages
             numberOfAlbums={this.props.searchItunes.itunes.results.length}
-            page1={()=> this.props.page1()}
-            page2={()=> this.props.page2()}
-            page3={()=> this.props.page3()}
+            page1={()=> this.props.page("PAGE1")}
+            page2={()=> this.props.page("PAGE2")}
+            page3={()=> this.props.page("PAGE3")}
           />
           }
       </div>
@@ -76,45 +74,23 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     switchLayout: () => {
-      dispatch({
-        type:"GRID"
-      });
+      dispatch(switchLayout());
     },
     onSearchChange: (searchTerm) => {
-      dispatch({
-        type:"SEARCHTERM",
-        payload:searchTerm
-      });
+      dispatch(onSearchChange(searchTerm));
     },
     clearLayout: () => {
-      dispatch({
-        type:"CLEARLAYOUT",
-      });
+      dispatch(clearLayout());
     },
-    page1: () => {
-      dispatch({
-        type:"PAGE1",
-      });
-    },
-    page2: () => {
-      dispatch({
-        type:"PAGE2",
-      });
-    },
-    page3: () => {
-      dispatch({
-        type:"PAGE3",
-      });
+    page: (pageNumber) => {
+      dispatch(page(pageNumber));
     },
     fetchITunesAlbums: (e,searchTerm) => {
       console.log(searchTerm);
       e.preventDefault();
         axios.get(`${PATH_BASE}?${PATH_TERM}${searchTerm}&${COUNTRY}&${ALBUMS}&${LIMIT}`)
           .then(response =>{
-            dispatch({
-              type: 'FETCHITUNESALBUMS',
-              payload: response.data
-            });
+            dispatch(fetchITunesAlbums(response.data));
           });
     }
   };

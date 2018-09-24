@@ -1,25 +1,11 @@
-import {
-  GRID,
-  ADDITIONALPAGES
-} from '../actions/types'
+import * as ActionType from '../actions/action-types';
 
-
-
-
-const booleanReducer = (state = { grid:true, additionalPages:false }, action) => {
-  switch (action.type){
-    case GRID:
-        state = {
-          ...state,
-          grid:!state.grid
-        }
-      break;
-    case ADDITIONALPAGES:
-        state = {
-          ...state,
-          additionalPages:!state.additionalPages
-        }
-      break;
+const booleanReducer = (state = { grid:true }, action) => {
+  if (action.type === ActionType.GRID){
+    return state = {
+      ...state,
+      grid:!state.grid
+    }
   }
   return state;
 };

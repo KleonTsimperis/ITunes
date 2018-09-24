@@ -11,6 +11,7 @@ import {onSearchChange} from './actions/actions';
 import {page} from './actions/actions';
 import {clearLayout} from './actions/actions';
 import {fetchITunesAlbums} from './actions/actions';
+import './index.css';
 
 const PATH_BASE = 'https://itunes.apple.com/search';
 const PATH_TERM = 'term=';
@@ -21,6 +22,7 @@ const LIMIT = 'limit=60';
 class App extends Component {
 
   render() {
+
     return (
        <div name="top">
           <Navbar

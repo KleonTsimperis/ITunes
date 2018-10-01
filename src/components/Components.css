@@ -13,6 +13,14 @@
 }
 
 
+div h5 {
+  text-shadow: 2px 2px 4px #000000;
+}
+
+div p{
+  text-shadow: 2px 2px 4px #000000;
+}
+
 .searchBar{
    display: block;
    margin: 10px auto;
@@ -34,7 +42,10 @@
 .moreInfoButton{
   border-radius: 3px;
   width:150px;
-  height:40px;
+  min-width: 150px;
+  background-color: rgba(5,118,255,1);
+  display:block;
+  padding-left: 0;
   border:1px solid skyblue;
   transition: transform 1s;
 }
@@ -182,13 +193,47 @@ a{
 }
 
 .reactReveal{
-  position:absolute;
-  top:20%;
-  right:35%;
-  font-size:10em;
+  width:30%;
+  display: block;
+  margin:auto;
+  margin-top: 10%;
+  font-size:5em;
   color: #fff;
 	text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff2d95, 0 0 30px #ff2d95, 0 0 40px #ff2d95, 0 0 50px #ff2d95, 0 0 75px #ff2d95;
 	letter-spacing: 5px;
-  padding-left: 30px;
-  padding-bottom: 30px;
+}
+
+.navFlex {
+  display:flex;
+  flex-wrap: nowrap;
+  vertical-align: middle;
+}
+
+.item {
+  align-self: center;
+}
+
+.listFlex1 {
+  max-width: 200px;
+  flex: 1 0 150px;
+  margin: 30px;
+
+}
+
+.listFlex2 {
+  width: 100%;
+  flex: 1 0 150px;
+  margin: 30px;
+  margin-left:0;
+  text-overflow: clip;
+}
+
+.listFlex2a{
+  max-height: 48px;
+  min-height: 48px;
+}
+
+.listFlex2b{
+  max-height: 38px;
+  min-height: 38px;
 }

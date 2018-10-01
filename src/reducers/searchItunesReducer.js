@@ -1,7 +1,7 @@
 import * as ActionType from '../actions/action-types';
 
-const searchItunesReducer = (state = { searchTerm:'', itunes:null, display:false, currentPage:1}, action) => {
-  if (action.type === 'SEARCHTERM'){
+const searchItunesReducer = (state = { searchTerm:'', itunes:null, display:false, currentPage:1, isLoading:false}, action) => {
+  if (action.type === ActionType.SEARCHTERM){
     return state = {
       ...state,
       searchTerm:action.payload
@@ -13,7 +13,8 @@ const searchItunesReducer = (state = { searchTerm:'', itunes:null, display:false
       itunes: action.payload,
       display:true,
       searchTerm:"",
-      currentPage:1
+      currentPage:1,
+      isLoading:false
       }
     }
   if (action.type === ActionType.CLEARLAYOUT){
@@ -41,6 +42,13 @@ const searchItunesReducer = (state = { searchTerm:'', itunes:null, display:false
       currentPage:3
       }
     }
+  if (action.type === ActionType.ISLOADING){
+    console.log('isLoading switched to true');
+    return state = {
+      ...state,
+      isLoading:true
+    }
+  }
     return state;
   };
 

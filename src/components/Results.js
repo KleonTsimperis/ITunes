@@ -4,10 +4,7 @@ import CardGrid from './CardGrid';
 import CardList from './CardList';
 import PropTypes from 'prop-types';
 
-
 const Results = (props,page) =>{
-  console.log(props.currentPage);
-
   if (props.currentPage===1){
      page = (item,index) => index < 20;
   } else if (props.currentPage===2){
@@ -44,7 +41,8 @@ return <div className="container-fluid">
         </div>
       )}
    </div>
-</div>};
+</div>
+};
 
 Results.propTypes = {
   grid: PropTypes.bool.isRequired,
@@ -52,6 +50,5 @@ Results.propTypes = {
     results: PropTypes.array
   })
 }
-
 
 export default Results;

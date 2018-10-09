@@ -17,14 +17,14 @@ const CardList = props => {
       </div>
       <div className="listFlex2">
         <h5 className="li-head my-3 listFlex2a" title={`${props.trackCount} songs`}>{props.collectionName}</h5>
-        <p className="li-summary my-3 h2 listFlex2b" title={`Genre: ${props.primaryGenreName}`}>{props.artistName}</p>
+        <p className="li-summary  h2 listFlex2b" title={`Genre: ${props.primaryGenreName}`}>{props.artistName}</p>
         <button className="shadowCardList moreInfoButton mt-5"><a href={props.collectionViewUrl} className="text-white" target="_blank">More info</a></button>
       </div>
     </Fragment>
   );
 
   return(
-    <div className="d-flex">
+    <div className="d-flex toBecomeColumn">
       {result}
     </div>
   );

@@ -7,7 +7,7 @@ import Slide from 'react-reveal';
 import PropTypes from 'prop-types';
 
 
-const MainContent = (props,page) =>{
+const MainContent = (props,page) => {
 
   let result = (
     <Slide>
@@ -15,7 +15,7 @@ const MainContent = (props,page) =>{
     </Slide>
   );
 
-  if (props.searchItunes.display){
+  if (props.searchItunes.itunes !== null && props.searchItunes.itunes.resultCount > 0){
     if (props.searchItunes.currentPage===1){
        page = (item,index) => index < 20;
     } else if (props.searchItunes.currentPage===2){
@@ -25,8 +25,8 @@ const MainContent = (props,page) =>{
     }
     result = (
       <div className={props.toggle.grid ? "row" : ""}>
-         {props.searchItunes.itunes.results.filter(page).map((item,index) =>
-           <div key={index} className={props.toggle.grid ? "col-md-3" : ""}>
+         {props.searchItunes.itunes.results.filter(page).map(item =>
+           <div key={item.collectionId} className={props.toggle.grid ? "col-lg-3 col-md-4 col-sm-6 " : ""}>
              {props.toggle.grid ?
                <CardGrid
                  artworkUrl100={item.artworkUrl100}
@@ -52,7 +52,13 @@ const MainContent = (props,page) =>{
          )}
       </div>
     )
-  }
+  } else if (props.searchItunes.itunes !== null &&  props.searchItunes.itunes.resultCount === 0){
+    result = (
+      <Slide>
+        <div className="reactReveal">No results...</div>
+      </Slide>
+      )
+    };
 
 return (
     <div className="container-fluid">
@@ -61,12 +67,10 @@ return (
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    toggle: state.booleanReducer,
-    searchItunes: state.searchItunesReducer
-  }
-}
+const mapStateToProps = state => ({
+  toggle: state.booleanReducer,
+  searchItunes: state.searchItunesReducer
+});
 
 MainContent.propTypes = {
   grid: PropTypes.bool,

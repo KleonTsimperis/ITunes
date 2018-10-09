@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Pages from '../components/Pages';
-import { page } from '../actions/actions';
+import { onPageChange } from '../actions/actions';
+import 'rc-pagination/assets/index.css';
+import Pagination from 'rc-pagination';
 
 const Footer = props => {
   let footer = null;
   if(props.searchItunes.display){
     footer = (
-      <Pages
-        numberOfAlbums={props.searchItunes.itunes.results.length}
-        page1={()=> props.page("PAGE1")}
-        page2={()=> props.page("PAGE2")}
-        page3={()=> props.page("PAGE3")}
-      />
+        <Pagination
+          defaultCurrent={1}
+          total={props.searchItunes.itunes.results.length}
+          defaultPageSize={20}
+          onChange={props.onPageChange}
+          onClick={window.scrollTo(0,0)}
+        />
     );
   }
   return(
@@ -24,14 +26,10 @@ const Footer = props => {
 
 const mapStateToProps = state => ({
   searchItunes: state.searchItunesReducer
-})
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    page: (pageNumber) => {
-      dispatch(page(pageNumber));
-    },
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  onPageChange:page => dispatch(onPageChange(page))
+});
 
 export default connect(mapStateToProps,mapDispatchToProps)(Footer);

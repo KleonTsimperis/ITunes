@@ -1,33 +1,24 @@
 import * as ActionTypes from './action-types';
 
-export const switchLayout = () => {
-  return {
-    type:ActionTypes.GRID
-  }
-};
+export const switchLayout = () => ({
+  type:ActionTypes.GRID
+});
 
-export const onSearchChange = searchTerm => {
-  return{
-    type:ActionTypes.SEARCHTERM,
-    payload:searchTerm
-  }
-};
+export const onSearchChange = searchTerm => ({
+  type:ActionTypes.SEARCHTERM,
+  payload:searchTerm
+});
 
-export const clearLayout = () => {
-  return{
-    type:ActionTypes.CLEARLAYOUT
-  }
-};
+export const clearLayout = () => ({
+  type:ActionTypes.CLEARLAYOUT
+});
 
-export const page = pageNumber => {
-  return{
-    type:ActionTypes[pageNumber]
-  }
-};
+export const onPageChange = page => ({
+  type:ActionTypes.HANDLE_PAGE,
+  payload:page
+});
 
-export const fetchITunesAlbums = data => {
-  return{
-    type:ActionTypes.FETCHITUNESALBUMS,
-    payload:data
-  }
-};
+export const fetchITunesAlbums = data => ({
+  type:ActionTypes.FETCHITUNESALBUMS,
+  payload:data
+});

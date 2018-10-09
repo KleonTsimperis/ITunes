@@ -17,7 +17,7 @@ const CardGrid = props => {
           <p className="card-text text-white text-center mt-4 h4" title={`Genre: ${props.primaryGenreName}`}>- {props.artistName} -</p>
       </div>
       <div className="card-body mb-2 mx-auto" style={{height:"70px"}}>
-        <button className="b-blue moreInfoButton"><a href={props.collectionViewUrl} className="text-white" target="_blank">More info</a></button>
+        <button className="b-blue searchButton"><a href={props.collectionViewUrl} className="text-white" target="_blank">More info</a></button>
       </div>
     </Fragment>
   );

@@ -11,6 +11,7 @@ const searchItunesReducer = (state = { searchTerm:'', itunes:null, display:false
     return state = {
       ...state,
       searchTerm:action.payload
+      // [action.payload.name]:action.payload.value
       }
     }
   if (action.type === ActionType.FETCHITUNESALBUMS){
